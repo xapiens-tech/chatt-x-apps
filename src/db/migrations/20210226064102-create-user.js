@@ -21,17 +21,14 @@ module.exports = {
 				type: Sequelize.INTEGER,
 			},
 			delete_at: {
-				type: Sequelize.STRING,
-			},
-			delete_status: {
-				type: Sequelize.INTEGER,
+				type: Sequelize.DATE,
 			},
 			created_at: {
-				allowNull: false,
+				allowNull: true,
 				type: Sequelize.DATE,
 			},
 			updated_at: {
-				allowNull: false,
+				allowNull: true,
 				type: Sequelize.DATE,
 			},
 		});
