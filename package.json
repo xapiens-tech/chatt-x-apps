@@ -1,0 +1,20 @@
+{
+  "name": "chat-xapiens",
+  "version": "1.0.0",
+  "description": "chat-xapiens",
+  "main": "apps.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.20.0"
+  },
+  "scripts": {
+    "test": "npm start"
+  },
+  "keywords": [
+    "chat-xapiens"
+  ],
+  "author": "heriipurnama",
+  "license": "ISC"
+}
