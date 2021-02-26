@@ -8,6 +8,7 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-validator": "^6.10.0",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.2.5",
     "next-tick": "^1.1.0",
@@ -21,7 +22,7 @@
   "scripts": {
     "test": "npm start",
     "start-dev": "./node_modules/nodemon/bin/nodemon.js apps.js",
-    "start":"node apps.js"
+    "start": "node apps.js"
   },
   "keywords": [
     "chat-xapiens"

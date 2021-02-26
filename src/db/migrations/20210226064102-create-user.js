@@ -20,6 +20,9 @@ module.exports = {
 			phone_number: {
 				type: Sequelize.INTEGER,
 			},
+			password: {
+				type: Sequelize.STRING,
+			},
 			delete_at: {
 				type: Sequelize.DATE,
 			},
