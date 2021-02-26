@@ -20,7 +20,8 @@
   },
   "scripts": {
     "test": "npm start",
-    "start": "./node_modules/nodemon/bin/nodemon.js apps.js"
+    "start-dev": "./node_modules/nodemon/bin/nodemon.js apps.js",
+    "start":"node apps.js"
   },
   "keywords": [
     "chat-xapiens"
