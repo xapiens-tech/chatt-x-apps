@@ -13,11 +13,12 @@ module.exports = (sequelize, DataTypes) => {
 	}
 	user.init(
 		{
-			full_name: DataTypes.STRING,
+			fullname: DataTypes.STRING,
 			username: DataTypes.STRING,
+			password: DataTypes.STRING,
 			email: DataTypes.STRING,
 			phone_number: DataTypes.STRING,
-			password: DataTypes.STRING,
+			photo: DataTypes.STRING,
 			delete_at: DataTypes.DATE,
 		},
 		{
@@ -26,5 +27,19 @@ module.exports = (sequelize, DataTypes) => {
 			underscored: true,
 		}
 	);
+
+	Object.defineProperty(user.prototype, "entity", {
+		get() {
+			return {
+				id: this.id,
+				fullname: this.fullname,
+				username: this.username,
+				email: this.email,
+				phone_number: this.phone_number,
+				photo: this.photo,
+			};
+		},
+	});
+
 	return user;
 };

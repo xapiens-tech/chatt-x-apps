@@ -8,19 +8,22 @@ module.exports = {
 				primaryKey: true,
 				type: Sequelize.INTEGER,
 			},
-			full_name: {
-				type: Sequelize.STRING,
+			fullname: {
+				type: Sequelize.STRING(20),
 			},
 			username: {
+				type: Sequelize.STRING(20),
+			},
+			password: {
 				type: Sequelize.STRING,
 			},
 			email: {
-				type: Sequelize.STRING,
+				type: Sequelize.STRING(30),
 			},
 			phone_number: {
-				type: Sequelize.INTEGER,
+				type: Sequelize.STRING(20),
 			},
-			password: {
+			photo: {
 				type: Sequelize.STRING,
 			},
 			delete_at: {
@@ -36,7 +39,6 @@ module.exports = {
 			},
 		});
 	},
-	// eslint-disable-next-line no-unused-vars
 	down: async (queryInterface, Sequelize) => {
 		await queryInterface.dropTable("users");
 	},

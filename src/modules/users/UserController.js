@@ -1,18 +1,23 @@
 "use strict";
 
+const bcrypt = require("bcrypt");
+
 const baseResponse = require("../../utils/helper/Response");
 const { user } = require("../../db/models");
+const token = require("../../utils/helper/Token");
 
 class UserController {
 	static async signup(req, res, next) {
+		console.log("req", req);
 		let { fullName, email, username, phoneNumber, password } = req.body;
+
 		try {
 			const payload = await user.create({
-				full_name: fullName,
+				fullname: fullName,
 				username: username,
 				email: email,
-                phone_number: phoneNumber,
-                password: password,
+				phone_number: phoneNumber,
+				password: bcrypt.hashSync(password, 10),
 				created_at: Date.now(),
 				updated_at: Date.now(),
 			});
@@ -23,9 +28,39 @@ class UserController {
 		}
 	}
 
-	static async sigin(req, res, next) {
-        let { username, email, password } = req.
+	static async signin(req, res, next) {
+		let { username, password } = req.body;
+
 		try {
+			let usernameEmail = username;
+			let dataUsername = await user.findOne({
+				where: { username: usernameEmail },
+			});
+
+			if (!dataUsername) {
+				throw new Error(`username ${usernameEmail} doesn't exists!`);
+			}
+			const isPassword = await bcrypt.compareSync(
+				password,
+				dataUsername.password
+			);
+			if (!isPassword) {
+				throw new Error("Wrong Password!");
+			}
+			return baseResponse({
+				message: "Login succes",
+				data: token(dataUsername),
+			})(res, 200);
+		} catch (error) {
+			res.status(403);
+			next(error);
+		}
+	}
+
+	static async profile(req, res, next) {
+		try {
+			res.status(200);
+			return res.json(req.user.entity);
 		} catch (error) {
 			res.status(403);
 			next(error);
