@@ -8,7 +8,6 @@ const token = require("../../utils/helper/Token");
 
 class UserController {
 	static async signup(req, res, next) {
-		console.log("req", req);
 		let { fullName, email, username, phoneNumber, password } = req.body;
 
 		try {
