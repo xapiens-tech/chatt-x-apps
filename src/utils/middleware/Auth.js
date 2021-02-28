@@ -10,6 +10,7 @@ const VerifyToken = async (req, res, next) => {
 		const splitBearer = bearerheader.split(" ");
 		const bearer = splitBearer[1];
 
+		// eslint-disable-next-line no-undef
 		let datas = jwt.verify(bearer, process.env.SECRET_KEY);
 		req.user = await user.findByPk(datas.id);
 		next();
