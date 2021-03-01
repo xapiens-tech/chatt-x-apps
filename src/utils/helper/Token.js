@@ -7,6 +7,6 @@ const token = (user) =>
 			email: user.email,
 		},
 		process.env.SECRET_KEY,
-		{ expiresIn: 60 * 60 }
+		{ expiresIn: "1d" }
 	);
 module.exports = token;
