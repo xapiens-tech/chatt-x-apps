@@ -13,6 +13,7 @@
     "multer": "^1.4.2",
     "mysql2": "^2.2.5",
     "next-tick": "^1.1.0",
+    "redis": "^3.0.2",
     "sequelize": "^6.5.0"
   },
   "devDependencies": {

@@ -9,13 +9,15 @@ const token = require("../../utils/helper/Token");
 class UserController {
 	static async signup(req, res, next) {
 		let { fullName, email, username, phoneNumber, password } = req.body;
-
+		let defaultImage =
+			"https://i.pinimg.com/564x/82/64/00/826400943f7549d21cec0418d1a32e2b.jpg";
 		try {
 			const payload = await user.create({
 				fullname: fullName,
 				username: username,
 				email: email,
 				phone_number: phoneNumber,
+				photo: defaultImage,
 				password: bcrypt.hashSync(password, 10),
 				created_at: Date.now(),
 				updated_at: Date.now(),
@@ -46,7 +48,7 @@ class UserController {
 			if (!isPassword) {
 				throw new Error("Wrong Password!");
 			}
-			return baseResponse({
+			baseResponse({
 				message: "Login succes",
 				data: token(dataUsername),
 			})(res, 200);
@@ -60,6 +62,16 @@ class UserController {
 		try {
 			res.status(200);
 			return res.json(req.user.entity);
+		} catch (error) {
+			res.status(403);
+			next(error);
+		}
+	}
+
+	static async getContacts(req, res, next) {
+		try {
+			let payload = await user.findAll();
+			baseResponse({ message: "list contacts", data: payload })(res);
 		} catch (error) {
 			res.status(403);
 			next(error);
