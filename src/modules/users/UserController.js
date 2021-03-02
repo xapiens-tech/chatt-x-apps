@@ -71,7 +71,7 @@ class UserController {
 	static async getContacts(req, res, next) {
 		try {
 			let payload = await user.findAll();
-			baseResponse({ message: "list contacts", data: payload })(res);
+			baseResponse({ message: "list contacts", data: payload })(res, 200);
 		} catch (error) {
 			res.status(403);
 			next(error);
