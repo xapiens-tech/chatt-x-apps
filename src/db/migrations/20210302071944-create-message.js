@@ -15,7 +15,7 @@ module.exports = {
 				type: Sequelize.INTEGER,
 			},
 			message: {
-				type: Sequelize.STRING,
+				type: Sequelize.TEXT,
 			},
 			delete_at: {
 				type: Sequelize.DATE,

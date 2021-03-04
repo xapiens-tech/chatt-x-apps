@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
 		{
 			id_sender: DataTypes.INTEGER,
 			id_receiver: DataTypes.INTEGER,
-			message: DataTypes.STRING,
+			message: DataTypes.TEXT,
 			delete_at: DataTypes.DATE,
 		},
 		{
