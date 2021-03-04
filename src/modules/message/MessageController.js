@@ -6,12 +6,13 @@ const encriptDecript = require("../../utils/middleware/EncriptDecript");
 
 class MessageController {
 	static async createMessages(req, res, next) {
-		const { idSender, idReceiver, messages } = req.body;
+		const { idReceiver, messages } = req.body;
 		const restEncryptedMessage = encriptDecript.encrypt(messages);
 		const restDecryptedMessage = encriptDecript.decrypt(restEncryptedMessage);
+
 		try {
 			await message.create({
-				id_sender: idSender,
+				id_sender: req.user.id,
 				id_receiver: idReceiver,
 				message: restEncryptedMessage,
 				created_at: Date.now(),
@@ -19,7 +20,7 @@ class MessageController {
 			});
 
 			const datas = {
-				id_sender: idSender,
+				id_sender: req.user.id,
 				id_receiver: idReceiver,
 				message: restDecryptedMessage,
 				created_at: Date(),
